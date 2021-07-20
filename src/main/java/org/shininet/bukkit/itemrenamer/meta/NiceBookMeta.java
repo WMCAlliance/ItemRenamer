@@ -1,9 +1,9 @@
 package org.shininet.bukkit.itemrenamer.meta;
 
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import com.comphenix.protocol.wrappers.nbt.NbtFactory;
 import com.comphenix.protocol.wrappers.nbt.NbtList;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Represents an ItemMeta for books that doesn't remove custom NBT tags.
@@ -25,7 +25,7 @@ public class NiceBookMeta extends NiceItemMeta {
 	 */
 	private static ItemStack validate(ItemStack stack) {
 		// Make sure the stack is
-		if (stack.getType() != Material.WRITTEN_BOOK && stack.getType() != Material.BOOK_AND_QUILL)
+		if (stack.getType() != Material.WRITTEN_BOOK && stack.getType() != Material.WRITABLE_BOOK)
 			throw new IllegalArgumentException("stack must be a book.");
 		return stack;
 	}

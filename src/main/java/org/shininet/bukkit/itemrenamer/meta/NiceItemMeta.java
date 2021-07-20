@@ -1,15 +1,13 @@
 package org.shininet.bukkit.itemrenamer.meta;
 
-import java.util.List;
-
-import org.bukkit.inventory.ItemStack;
-import org.shininet.bukkit.itemrenamer.utils.StackUtils;
-
 import com.comphenix.protocol.wrappers.nbt.NbtCompound;
 import com.comphenix.protocol.wrappers.nbt.NbtFactory;
 import com.comphenix.protocol.wrappers.nbt.NbtList;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import java.util.List;
+import org.bukkit.inventory.ItemStack;
+import org.shininet.bukkit.itemrenamer.utils.StackUtils;
 
 /**
  * Represents an ItemMeta that will not remove custom NBT tags.
@@ -35,7 +33,7 @@ public class NiceItemMeta {
 	public static NiceItemMeta fromStack(ItemStack stack) {
 		switch (stack.getType()) {
 			case WRITTEN_BOOK:
-			case BOOK_AND_QUILL:
+			case WRITABLE_BOOK:
 				return NiceBookMeta.fromStack(stack);
 			default :
 				return new NiceItemMeta(stack);

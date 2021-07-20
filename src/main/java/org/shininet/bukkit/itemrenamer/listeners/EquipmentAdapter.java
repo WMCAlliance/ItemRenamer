@@ -1,12 +1,13 @@
 package org.shininet.bukkit.itemrenamer.listeners;
 
+import com.google.common.base.Preconditions;
 import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
-
 import org.apache.commons.lang.NullArgumentException;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
@@ -16,8 +17,6 @@ import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-
-import com.google.common.base.Preconditions;
 
 class EquipmentAdapter implements Inventory {	
 	// One held armor slot + 4 armor slots
@@ -497,4 +496,25 @@ class EquipmentAdapter implements Inventory {
 	    public int getMaxStackSize() {
 	        return MAX_STACK_SIZE;
 	    }
+
+	@Override
+	public Location getLocation() {
+		return viewer.getLocation();
+	}
+
+	@Override
+	public ItemStack[] getStorageContents() {
+    	return asList().toArray(new ItemStack[getSize()]);
+	}
+
+	@Override
+	public void setStorageContents(ItemStack[] items) {
+        if (getSize() < items.length) {
+            throw new IllegalArgumentException("Invalid inventory size; expected " + getSize() + " or less");
+        }
+
+        for (int i = 0; i < items.length; i++) {
+        	setItem(i, items[i]);
+        }
+	}
 }
